@@ -1,0 +1,24 @@
+.error {
+  padding: 10%;
+}
+
+.error-title {
+  color: #00bc77;
+  font-size: 5rem;
+}
+
+.error-text {
+  color: #2c3e50;
+  font-size: 2rem;
+}
+
+.error-link {
+  color: #00bc77;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.error-link:hover {
+  color: #2c3e50;
+  text-decoration: underline;
+}
