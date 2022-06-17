@@ -28,10 +28,10 @@ function Navbar() {
       </Link>
       <div>
         {user ? (
-          <div className="main-nav-item" onClick={onLogout}>
-            <i className="fa fa-user-circle"></i>
+          <Link className="main-nav-item" to="/" onClick={onLogout} >
+            <i className="fa fa-sign-out"></i>
             Sign Out
-          </div>
+          </Link>
         ) : (
           <Link className="main-nav-item" to="/login">
             <i className="fa fa-user-circle"></i>

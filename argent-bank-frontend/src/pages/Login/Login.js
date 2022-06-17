@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +24,7 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      console.log(message);
+      toast.error(message);
     }
 
     if (isSuccess || user) {
@@ -65,9 +67,10 @@ function Login() {
             <input
               type="email"
               id="email"
-              value={email}
               name="email"
+              value={email}
               onChange={onChange}
+              required
             />
           </div>
           <div className="input-wrapper">
@@ -75,9 +78,10 @@ function Login() {
             <input
               type="password"
               id="password"
-              value={password}
               name="password"
+              value={password}
               onChange={onChange}
+              required
             />
           </div>
           <div className="input-remember">
@@ -88,6 +92,7 @@ function Login() {
             Sign In
           </button>
         </form>
+        <ToastContainer />
       </section>
     </main>
   );
