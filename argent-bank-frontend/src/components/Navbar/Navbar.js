@@ -28,7 +28,7 @@ function Navbar() {
       </Link>
       <div>
         {user ? (
-          <Link className="main-nav-item" to="/" onClick={onLogout} >
+          <Link className="main-nav-item" to="/" onClick={onLogout}>
             <i className="fa fa-sign-out"></i>
             Sign Out
           </Link>
