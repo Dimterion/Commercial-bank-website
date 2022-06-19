@@ -1,13 +1,19 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import "./profile.css";
 
 function Profile() {
+  const navigate = useNavigate();
+
   const { user } = useSelector((state) => state.auth);
 
-  if (!user) {
-    return <div>You must sign in.</div>;
-  }
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  });
 
   return (
     <main className="main bg-dark">
