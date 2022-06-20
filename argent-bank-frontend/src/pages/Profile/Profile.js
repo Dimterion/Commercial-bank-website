@@ -8,6 +8,7 @@ function Profile() {
   const navigate = useNavigate();
 
   const { user } = useSelector((state) => state.auth);
+  const { firstName, lastName } = useSelector((state) => state.profile);
 
   useEffect(() => {
     if (!user) {
@@ -21,7 +22,7 @@ function Profile() {
         <h1>
           Welcome back
           <br />
-          User!
+          {firstName} {lastName}!
         </h1>
         <button className="edit-button">Edit Name</button>
       </div>

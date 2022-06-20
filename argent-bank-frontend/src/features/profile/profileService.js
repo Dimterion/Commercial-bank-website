@@ -2,14 +2,20 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3001/api/v1/user/profile/";
 
-const profile = async (userData) => {
-  const response = await axios.post(API_URL, userData);
+const getProfile = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
-  if (response.data) {
-    localStorage.setItem("profile", JSON.stringify(response.data));
-  }
+  const response = await axios.get(API_URL, config);
 
   return response.data;
 };
 
-export default profile;
+const profileService = {
+  getProfile,
+};
+
+export default profileService;
