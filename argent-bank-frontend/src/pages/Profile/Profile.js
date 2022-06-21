@@ -1,31 +1,92 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
+import { getProfile, editProfile } from "../../features/profile/profileSlice";
 import "./profile.css";
 
 function Profile() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
-  const { firstName, lastName } = useSelector((state) => state.profile);
+  const { profile } = useSelector((state) => state.profile);
+
+  const [isEdit, setIsEdit] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   useEffect(() => {
     if (!user) {
       navigate("/login");
     }
+
+    dispatch(getProfile());
   });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (firstName.length >= 1 && lastName.length >= 1) {
+      dispatch(editProfile({ firstName, lastName }));
+      setFirstName("");
+      setLastName("");
+      setIsEdit(false);
+    }
+  };
+
+  const closeForm = (e) => {
+    e.preventDefault();
+    setIsEdit(false);
+  };
 
   return (
     <main className="main bg-dark">
-      <div className="header">
-        <h1>
-          Welcome back
-          <br />
-          {firstName} {lastName}!
-        </h1>
-        <button className="edit-button">Edit Name</button>
-      </div>
+      {isEdit ? (
+        <div className="header">
+          <h1>Welcome back</h1>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <input
+                id="firstNameInput"
+                type="text"
+                placeholder={profile.firstName}
+                value={firstName}
+                onChange={(e) => {
+                  setFirstName(e.currentTarget.value);
+                }}
+              />
+              <input
+                id="lastNameInput"
+                type="text"
+                placeholder={profile.lastName}
+                value={lastName}
+                onChange={(e) => {
+                  setLastName(e.currentTarget.value);
+                }}
+              />
+            </div>
+            <div>
+              <button className="edit-button" type="submit">
+                Save
+              </button>
+              <button className="edit-button" onClick={closeForm}>
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      ) : (
+        <div className="header">
+          <h1>
+            Welcome back
+            <br />
+            {user.firstName} {user.lastName}!
+          </h1>
+          <button className="edit-button" onClick={() => setIsEdit(true)}>
+            Edit Name
+          </button>
+        </div>
+      )}
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
         <div className="account-content-wrapper">
