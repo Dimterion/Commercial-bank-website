@@ -80,7 +80,7 @@ function Profile() {
           <h1>
             Welcome back
             <br />
-            {user.firstName} {user.lastName}!
+            {profile.firstName} {profile.lastName}!
           </h1>
           <button className="edit-button" onClick={() => setIsEdit(true)}>
             Edit Name
