@@ -3,6 +3,20 @@
   margin-bottom: 2rem;
 }
 
+.header-fields {
+  margin-bottom: 3vh;
+}
+
+.header-fields > input {
+  margin: 1vh;
+  height: 3vh;
+}
+
+.edit-buttons-block > button {
+  margin: 0 2vw;
+  width: 10vh;
+}
+
 .edit-button {
   border-color: #00bc77;
   background-color: #00bc77;

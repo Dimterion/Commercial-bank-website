@@ -45,7 +45,7 @@ function Profile() {
         <div className="header">
           <h1>Welcome back</h1>
           <form onSubmit={handleSubmit}>
-            <div>
+            <div className="header-fields">
               <input
                 id="firstNameInput"
                 type="text"
@@ -65,7 +65,7 @@ function Profile() {
                 }}
               />
             </div>
-            <div>
+            <div className="edit-buttons-block">
               <button className="edit-button" type="submit">
                 Save
               </button>
