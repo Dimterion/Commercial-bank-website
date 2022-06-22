@@ -9,15 +9,20 @@ function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.auth);
-  const { profile } = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.profile);
+
+  console.log(profile);
 
   const [isEdit, setIsEdit] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
   useEffect(() => {
-    if (!user) {
+    // if (!user) {
+    //   navigate("/login");
+    // }
+
+    if (!localStorage.getItem("token")) {
       navigate("/login");
     }
 

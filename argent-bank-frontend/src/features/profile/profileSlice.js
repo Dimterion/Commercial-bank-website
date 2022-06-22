@@ -1,31 +1,41 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 import profileService from "./profileService";
 
 const initialState = {
-  profile: {
-    firstName: "",
-    lastName: "",
-  },
+  firstName: "",
+  lastName: "",
   error: null,
 };
 
-export const getProfile = createAsyncThunk("profile/getProfile", async () => {
-  const token = localStorage.getItem("token");
-  const response = await profileService.post(
-    "/profile",
-    {},
-    { headers: { Authorization: `Bearer ${token}` } }
-  );
-  return response.data;
-});
+export const getProfile = createAsyncThunk(
+  "profile/getProfile",
+  async (payload, { rejectWithValue, getState, dispatch }) => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/v1/user/profile",
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      const { data } = response;
+      return data;
+    } catch (error) {
+      return rejectWithValue("Error happened.");
+    }
+  }
+);
 
 export const editProfile = createAsyncThunk(
   "profile/editProfile",
   async ({ firstName, lastName }) => {
     const token = localStorage.getItem("token");
-    await getProfile.put(
-      "/profile",
+    await axios.put(
+      "http://localhost:3001/api/v1/user/profile",
       { firstName, lastName },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -38,6 +48,7 @@ export const profileSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(getProfile.pending, (state) => {});
     builder.addCase(getProfile.fulfilled, (state, { payload }) => {
       state.firstName = payload.body.firstName;
       state.lastName = payload.body.lastName;
