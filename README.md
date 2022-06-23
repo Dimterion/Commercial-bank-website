@@ -1,12 +1,39 @@
-# Project #10 - Argent Bank API
+# Commercial bank website
 
-This codebase contains the code needed to run the backend for Argent Bank.
+OpenClassrooms project
 
-## Getting Started
+## Built with
 
-### Prerequisites
+HTML, CSS, JavaScript, React, React Router, Redux.
 
-Argent Bank uses the following tech stack:
+Additionally used React-toastify for the error messages and Swagger for the API documentation.
+
+## Task
+
+- Build a responsive web application for the bank using React
+- Refactoring of the provided static HTML and CSS files (homepage, login page, profile page)
+- Use Redux to manage the state accross the application
+- Work on the login feature and possibility to update the user details in the profile
+- Complete the tasks mentioned in the following [issues templates](https://github.com/Dimterion/Commercial-bank-website/tree/master/.github/ISSUE_TEMPLATE)
+- Connect the application to the [provided API](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API)
+- Provide the structure for the APIs that are needed for the future features implementation using Swagger syntax (view all transactions, view additional details, add, change and remove additional information about transactions)
+
+## Project goals
+
+- Interact with an API
+- Authenticate to a secure API
+- Create API models
+- Implement a state management system in a React app
+
+## Code
+
+[Backend](https://github.com/Dimterion/Commercial-bank-website/tree/master/server)
+
+[Frontend](https://github.com/Dimterion/Commercial-bank-website/tree/master/argent-bank-frontend)
+
+## How to run the project
+
+This app uses the following tech stack:
 
 - [Node.js v12](https://nodejs.org/en/)
 - [MongoDB Community Server](https://www.mongodb.com/try/download/community)
@@ -21,12 +48,12 @@ node --version
 mongo --version
 ```
 
-### Instructions
+### Instructions to run the backend
 
 1. Fork this repo
-1. Clone the repo onto your computer
-1. Open a terminal window in the cloned project
-1. Run the following commands:
+2. Clone the repo onto your computer
+3. Open a terminal window in the cloned project
+4. Run the following commands:
 
 ```bash
 # Install dependencies
@@ -69,4 +96,9 @@ Static HTML and CSS has been created for most of the site and is located in: `/d
 
 For some of the dynamic features, like toggling user editing, there is a mock-up for it in `/designs/wireframes/edit-user-name.png`.
 
-And for the API model that you will be proposing for transactitons, the wireframe can be found in `/designs/wireframes/transactions.png`.
+And for the API model that is used for the proposed future features, the wireframe can be found in `/designs/wireframes/transactions.png`.
+
+### Instructions to run the frontend (once the above steps are completed)
+
+1. cd .\argent-bank-frontend\
+2. npm start
