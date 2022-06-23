@@ -16,7 +16,7 @@ Additionally used React-toastify for the error messages and Swagger for the API 
 - Work on the login feature and possibility to update the user details in the profile
 - Complete the tasks mentioned in the following [issues templates](https://github.com/Dimterion/Commercial-bank-website/tree/master/.github/ISSUE_TEMPLATE)
 - Connect the application to the [provided API](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API)
-- Provide the structure for the APIs that are needed for the future features implementation using Swagger syntax (view all transactions, view additional details, add, change and remove additional information about transactions)
+- Provide the structure for the APIs that are needed for the future features implementation using Swagger syntax (view all transactions, view additional details, add, change and remove additional information about transactions). Can be viewed [here](https://github.com/Dimterion/Commercial-bank-website/blob/master/argent-bank-frontend/swagger.yaml)
 
 ## Project goals
 
@@ -66,7 +66,7 @@ npm run dev:server
 npm run populate-db
 ```
 
-Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
+Your server should now be running at http://localhost:3001 and you will have two users in your MongoDB database.
 
 ## Populated Database Data
 
