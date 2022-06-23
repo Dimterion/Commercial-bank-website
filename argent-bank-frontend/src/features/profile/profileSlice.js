@@ -1,17 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import profileService from "./profileService";
-
 const initialState = {
   firstName: "",
   lastName: "",
   error: null,
 };
 
+// Accessing the profile data.
+
 export const getProfile = createAsyncThunk(
   "profile/getProfile",
-  async (payload, { rejectWithValue, getState, dispatch }) => {
+  async (_payload, { rejectWithValue }) => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
@@ -25,10 +25,12 @@ export const getProfile = createAsyncThunk(
       const { data } = response;
       return data;
     } catch (error) {
-      return rejectWithValue("Error happened.");
+      return rejectWithValue("An error occurred.");
     }
   }
 );
+
+// Editing the profile data.
 
 export const editProfile = createAsyncThunk(
   "profile/editProfile",
@@ -42,6 +44,8 @@ export const editProfile = createAsyncThunk(
     return { firstName, lastName };
   }
 );
+
+// Creating the slice and reducers.
 
 export const profileSlice = createSlice({
   name: "profile",

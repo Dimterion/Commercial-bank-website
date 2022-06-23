@@ -12,6 +12,10 @@
   height: 3vh;
 }
 
+button {
+  cursor: pointer;
+}
+
 .edit-buttons-block > button {
   margin: 0 2vw;
   width: 10vh;

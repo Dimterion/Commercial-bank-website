@@ -1,34 +1,40 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
 
 import { getProfile, editProfile } from "../../features/profile/profileSlice";
 import "./profile.css";
+
+/**
+ * Profile page
+ */
 
 function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // Accessing state for the authentication and getting the profile data.
+  const { user } = useSelector((state) => state.auth);
   const profile = useSelector((state) => state.profile);
 
-  console.log(profile);
+  // Checking the profile information through the console.
+  // console.log(profile);
 
   const [isEdit, setIsEdit] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
+  // Checking if user is logged in to be able to access the profile page.
   useEffect(() => {
-    // if (!user) {
-    //   navigate("/login");
-    // }
-
-    if (!localStorage.getItem("token")) {
+    if (!user) {
       navigate("/login");
     }
 
     dispatch(getProfile());
   });
 
+  // Functions to change name and open/close the form.
   const handleSubmit = (e) => {
     e.preventDefault();
     if (firstName.length >= 1 && lastName.length >= 1) {
@@ -36,7 +42,16 @@ function Profile() {
       setFirstName("");
       setLastName("");
       setIsEdit(false);
+    } else {
+      toast.error(
+        "Please enter a new first and last name to update this information."
+      );
     }
+  };
+
+  const openForm = (e) => {
+    e.preventDefault();
+    setIsEdit(true);
   };
 
   const closeForm = (e) => {
@@ -79,6 +94,7 @@ function Profile() {
               </button>
             </div>
           </form>
+          <ToastContainer />
         </div>
       ) : (
         <div className="header">
@@ -87,7 +103,7 @@ function Profile() {
             <br />
             {profile.firstName} {profile.lastName}!
           </h1>
-          <button className="edit-button" onClick={() => setIsEdit(true)}>
+          <button className="edit-button" onClick={openForm}>
             Edit Name
           </button>
         </div>

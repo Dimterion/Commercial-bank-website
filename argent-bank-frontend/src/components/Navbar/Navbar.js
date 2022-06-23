@@ -5,10 +5,16 @@ import { logout, reset } from "../../features/auth/authSlice";
 import logo from "../../assets/argentBankLogo.png";
 import "./navbar.css";
 
+/**
+ * Navbar component
+ */
+
 function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const { user } = useSelector((state) => state.auth);
+  const profile = useSelector((state) => state.profile);
 
   const onLogout = () => {
     dispatch(logout());
@@ -29,14 +35,14 @@ function Navbar() {
       <div>
         {user ? (
           <>
-          <Link className="main-nav-item" to="/profile">
-            <i className="fa fa-user-circle"></i>
-            User
-          </Link>
-          <Link className="main-nav-item" to="/" onClick={onLogout}>
-            <i className="fa fa-sign-out"></i>
-            Sign Out
-          </Link>
+            <Link className="main-nav-item" to="/profile">
+              <i className="fa fa-user-circle"></i>
+              {profile.firstName}
+            </Link>
+            <Link className="main-nav-item" to="/" onClick={onLogout}>
+              <i className="fa fa-sign-out"></i>
+              Sign Out
+            </Link>
           </>
         ) : (
           <Link className="main-nav-item" to="/login">

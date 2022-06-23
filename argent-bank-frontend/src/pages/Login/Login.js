@@ -7,6 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { login, reset } from "../../features/auth/authSlice";
 import "./login.css";
 
+/**
+ * Login page
+ */
+
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
@@ -17,6 +21,8 @@ function Login() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // Getting the data from the state.
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
@@ -51,6 +57,8 @@ function Login() {
 
     dispatch(login(userData));
   };
+
+  // Message if the page is loading.
 
   if (isLoading) {
     return <div>Loading...</div>;
