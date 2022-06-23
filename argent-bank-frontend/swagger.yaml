@@ -1,0 +1,224 @@
+swagger: "2.0"
+info:
+  title: Bank Argent API documentation
+  description: Contains API endpoints proposed for the Transactions implementation
+  version: "1.0.0"
+  termsOfService: "http://swagger.io/terms/"
+host: localhost:3001
+basePath: /api/v1
+tags:
+  - name: Profile Transactions
+    description: Profiles transactions information
+schemes:
+  - http
+paths:
+  /user/profile/transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Profile Transactions
+      summary: All profile transactions
+      description: Displays information about all profile transactions
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Attach Bearer JWT token
+          required: true
+      responses:
+        "200":
+          description: Profile transactions retrieved successfully
+          schema:
+            $ref: "#/definitions/Transactions"
+        "400":
+          description: Invalid Fields
+        "404":
+          description: Transaction not found
+        "500":
+          description: Internal Server Error
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Profile Transactions
+      summary: Add transaction
+      description: Add transaction to the list
+      operationId: addTransaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Attach Bearer JWT token
+          required: true
+        - in: body
+          name: body
+          description: Added profile object
+          required: true
+          schema:
+            $ref: "#/definitions/Transactions"
+      responses:
+        "200":
+          description: Transaction added successfully
+        "400":
+          description: Invalid Fields
+        "404":
+          description: Transaction not found
+        "500":
+          description: Internal Server Error
+  /user/profile/transactions/{transactionId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Profile Transactions
+      summary: View chosen transaction
+      description: API for fetching a chosen transaction
+      operationId: getTransaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Attach Bearer JWT token
+          required: true
+        - in: path
+          name: transactionId
+          type: integer
+          description: ID of the chosen transaction
+          required: true
+      responses:
+        "200":
+          description: Transaction retrieved successully
+          schema:
+            $ref: "#/definitions/Transactions"
+        "400":
+          description: Invalid Fields
+        "404":
+          description: Transaction not found
+        "500":
+          description: Internal Server Error
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Profile Transactions
+      summary: Edit chosen transaction
+      description: API for editing a chosen transaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: Attach Bearer JWT token
+          required: true
+        - in: body
+          name: body
+          description: Transaction details to edit
+          required: true
+          schema:
+            type: object
+            properties:
+              category:
+                type: string
+              notes:
+                type: string
+        - in: path
+          name: transactionId
+          type: integer
+          required: true
+          description: ID of the chosen transaction
+      responses:
+        "200":
+          description: Transaction edited successully
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                format: int32
+              message:
+                type: string
+              body:
+                type: object
+                properties:
+                  category:
+                    type: string
+                  notes:
+                    type: string
+        "400":
+          description: Invalid Fields
+        "404":
+          description: Transaction not found
+        "500":
+          description: Internal Server Error
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - Profile Transactions
+      summary: Delete chosen transaction
+      description: API for deleting a chosen transaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          type: string
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - in: path
+          name: transactionId
+          type: string
+          required: true
+          description: ID of the chosen transaction
+      responses:
+        "200":
+          description: Transaction deleted successully
+        "400":
+          description: Invalid Fields
+        "404":
+          description: Transaction not found
+        "500":
+          description: Internal Server Error
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  Transactions:
+    type: object
+    properties:
+      transactionId:
+        type: string
+      date:
+        type: string
+      description:
+        type: string
+      amount:
+        type: integer
+      balance:
+        type: integer
+      type:
+        type: string
+      category:
+        type: string
+      notes:
+        type: string
