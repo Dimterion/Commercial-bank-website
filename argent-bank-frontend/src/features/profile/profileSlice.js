@@ -52,7 +52,7 @@ export const profileSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getProfile.pending, (state) => {});
+    builder.addCase(getProfile.pending, (_state) => {});
     builder.addCase(getProfile.fulfilled, (state, { payload }) => {
       state.firstName = payload.body.firstName;
       state.lastName = payload.body.lastName;
