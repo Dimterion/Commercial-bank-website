@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -19,8 +19,8 @@ function Login() {
 
   const { email, password } = formData;
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
   // Getting the data from the state.
 
@@ -38,6 +38,8 @@ function Login() {
     }
 
     dispatch(reset());
+
+    // Dependencies to prevent the warning message.
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
@@ -59,7 +61,6 @@ function Login() {
   };
 
   // Message if the page is loading.
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -79,6 +80,7 @@ function Login() {
               value={email}
               onChange={onChange}
               required
+              placeholder="user@email.com"
             />
           </div>
           <div className="input-wrapper">
@@ -90,6 +92,7 @@ function Login() {
               value={password}
               onChange={onChange}
               required
+              placeholder="**********"
             />
           </div>
           <div className="input-remember">
@@ -100,7 +103,6 @@ function Login() {
             Sign In
           </button>
         </form>
-        <ToastContainer />
       </section>
     </main>
   );

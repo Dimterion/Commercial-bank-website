@@ -8,7 +8,6 @@ const initialState = {
 };
 
 // Accessing the profile data.
-
 export const getProfile = createAsyncThunk(
   "profile/getProfile",
   async (_payload, { rejectWithValue }) => {
@@ -31,7 +30,6 @@ export const getProfile = createAsyncThunk(
 );
 
 // Editing the profile data.
-
 export const editProfile = createAsyncThunk(
   "profile/editProfile",
   async ({ firstName, lastName }) => {
@@ -46,7 +44,6 @@ export const editProfile = createAsyncThunk(
 );
 
 // Creating the slice and reducers.
-
 export const profileSlice = createSlice({
   name: "profile",
   initialState,

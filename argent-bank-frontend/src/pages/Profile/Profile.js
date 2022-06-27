@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import { getProfile, editProfile } from "../../features/profile/profileSlice";
 import "./profile.css";
@@ -94,7 +94,6 @@ function Profile() {
               </button>
             </div>
           </form>
-          <ToastContainer />
         </div>
       ) : (
         <div className="header">

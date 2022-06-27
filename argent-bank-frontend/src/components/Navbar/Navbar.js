@@ -1,4 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { logout, reset } from "../../features/auth/authSlice";
@@ -10,7 +11,7 @@ import "./navbar.css";
  */
 
 function Navbar() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
@@ -19,7 +20,7 @@ function Navbar() {
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
-    navigate("/");
+    // navigate("/");
   };
 
   return (
@@ -32,7 +33,7 @@ function Navbar() {
         />
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
-      <div>
+      <div className="main-nav-items-container">
         {user ? (
           <>
             <Link className="main-nav-item" to="/profile">

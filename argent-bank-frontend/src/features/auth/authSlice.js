@@ -33,7 +33,6 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 });
 
 // Creating the slice and reducers.
-
 export const authSlice = createSlice({
   name: "auth",
   initialState,

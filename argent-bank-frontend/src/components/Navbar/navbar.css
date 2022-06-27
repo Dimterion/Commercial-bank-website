@@ -42,3 +42,15 @@
   max-width: 100%;
   width: 200px;
 }
+
+@media (max-width: 395px) {
+  .main-nav-items-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+  }
+  .main-nav-item {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+  }
+}
