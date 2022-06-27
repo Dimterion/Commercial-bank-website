@@ -19,8 +19,8 @@ function Login() {
 
   const { email, password } = formData;
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Getting the data from the state.
 
