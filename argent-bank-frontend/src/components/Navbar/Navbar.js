@@ -1,4 +1,3 @@
-// import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -11,7 +10,6 @@ import "./navbar.css";
  */
 
 function Navbar() {
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
@@ -20,7 +18,6 @@ function Navbar() {
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
-    // navigate("/");
   };
 
   return (

@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const API_URL = "http://localhost:3001/api/v1/user/profile";
+
 const initialState = {
   firstName: "",
   lastName: "",
@@ -14,7 +16,7 @@ export const getProfile = createAsyncThunk(
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/v1/user/profile",
+        API_URL,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -35,7 +37,7 @@ export const editProfile = createAsyncThunk(
   async ({ firstName, lastName }) => {
     const token = localStorage.getItem("token");
     await axios.put(
-      "http://localhost:3001/api/v1/user/profile",
+      API_URL,
       { firstName, lastName },
       { headers: { Authorization: `Bearer ${token}` } }
     );
